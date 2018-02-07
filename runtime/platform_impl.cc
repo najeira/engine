@@ -11,7 +11,7 @@ PlatformImpl::PlatformImpl() {}
 PlatformImpl::~PlatformImpl() {}
 
 std::string PlatformImpl::defaultLocale() {
-  return "en-US";
+  return "ja-JP";
 }
 
 }  // namespace blink
