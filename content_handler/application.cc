@@ -134,7 +134,7 @@ Application::Application(
 
   settings_.icu_data_path = "";
 
-  settings_.using_blink = false;
+  settings_.using_blink = true;
 
   settings_.assets_dir = application_assets_directory_.get();
 

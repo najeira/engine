@@ -103,7 +103,7 @@ class UIDartState : public tonic::DartState {
 
   void AddOrRemoveTaskObserver(bool add);
 
-  bool use_blink_ = false;
+  bool use_blink_ = true;
 };
 
 }  // namespace blink
