@@ -145,13 +145,13 @@ void Logger_PrintString(Dart_NativeArguments args) {
   std::stringstream stream;
   const auto& logger_prefix = UIDartState::Current()->logger_prefix();
 
-#if !OS_ANDROID
+#if !OS(ANDROID)
   // Prepend all logs with the isolate debug name except on Android where that
   // prefix is specified in the log tag.
   if (logger_prefix.size() > 0) {
     stream << logger_prefix << ": ";
   }
-#endif  // !OS_ANDROID
+#endif  // !OS(ANDROID)
 
   // Append the log buffer obtained from Dart code.
   {
