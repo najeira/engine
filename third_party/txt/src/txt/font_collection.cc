@@ -136,7 +136,7 @@ FontCollection::GetMinikinFontCollectionForFamily(
   const auto default_font_family = GetDefaultFontFamily();
   if (font_family != default_font_family) {
     std::shared_ptr<minikin::FontCollection> default_collection =
-        GetMinikinFontCollectionForFamily(default_font_family, "");
+        GetMinikinFontCollectionForFamily(default_font_family, "ja_JP");
     font_collections_cache_[family_key] = default_collection;
     return default_collection;
   }

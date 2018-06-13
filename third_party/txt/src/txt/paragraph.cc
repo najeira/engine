@@ -136,10 +136,7 @@ bool GetItalic(const TextStyle& style) {
 }
 
 minikin::FontStyle GetMinikinFontStyle(const TextStyle& style) {
-  uint32_t language_list_id =
-      style.locale.empty()
-          ? minikin::FontLanguageListCache::kEmptyListId
-          : minikin::FontStyle::registerLanguageList(style.locale);
+  uint32_t language_list_id = minikin::FontStyle::registerLanguageList("ja_JP");
   return minikin::FontStyle(language_list_id, 0, GetWeight(style),
                             GetItalic(style));
 }
@@ -846,14 +843,12 @@ void Paragraph::SetFontCollection(
 std::shared_ptr<minikin::FontCollection>
 Paragraph::GetMinikinFontCollectionForStyle(const TextStyle& style) {
   std::string locale;
-  if (!style.locale.empty()) {
-    uint32_t language_list_id =
-        minikin::FontStyle::registerLanguageList(style.locale);
-    const minikin::FontLanguages& langs =
-        minikin::FontLanguageListCache::getById(language_list_id);
-    if (langs.size()) {
-      locale = langs[0].getString();
-    }
+  uint32_t language_list_id =
+      minikin::FontStyle::registerLanguageList("ja_JP");
+  const minikin::FontLanguages& langs =
+      minikin::FontLanguageListCache::getById(language_list_id);
+  if (langs.size()) {
+    locale = langs[0].getString();
   }
 
   return font_collection_->GetMinikinFontCollectionForFamily(style.font_family,
