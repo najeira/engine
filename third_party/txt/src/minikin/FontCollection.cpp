@@ -121,6 +121,9 @@ void FontCollection::init(
     }
     range->end = mFamilyVec.size();
   }
+
+  mDefaultLangListId = FontLanguageListCache::getId("ja_JP");
+
   // See the comment in Range for more details.
   LOG_ALWAYS_FATAL_IF(mFamilyVec.size() >= 0xFFFF,
                       "Exceeded the maximum indexable cmap coverage.");
@@ -301,8 +304,7 @@ const std::shared_ptr<FontFamily>& FontCollection::getFamilyForChar(
     // libtxt: check if the fallback font provider can match this character
     if (mFallbackFontProvider) {
       const std::shared_ptr<FontFamily>& fallback =
-          mFallbackFontProvider->matchFallbackFont(ch,
-                                                   GetFontLocale(langListId));
+          mFallbackFontProvider->matchFallbackFont(ch, "ja-JP");
       if (fallback) {
         return fallback;
       }
@@ -339,8 +341,7 @@ const std::shared_ptr<FontFamily>& FontCollection::getFamilyForChar(
     // libtxt: check if the fallback font provider can match this character
     if (mFallbackFontProvider) {
       const std::shared_ptr<FontFamily>& fallback =
-          mFallbackFontProvider->matchFallbackFont(ch,
-                                                   GetFontLocale(langListId));
+          mFallbackFontProvider->matchFallbackFont(ch, "ja-JP");
       if (fallback) {
         return fallback;
       }
@@ -437,7 +438,8 @@ void FontCollection::itemize(const uint16_t* string,
                              size_t string_size,
                              FontStyle style,
                              vector<Run>* result) const {
-  const uint32_t langListId = style.getLanguageListId();
+  //const uint32_t langListId = style.getLanguageListId();
+  const uint32_t langListId = mDefaultLangListId;
   int variant = style.getVariant();
   const FontFamily* lastFamily = nullptr;
   Run* run = NULL;

@@ -53,7 +53,7 @@ class ParagraphStyle {
   size_t max_lines = std::numeric_limits<size_t>::max();
   double line_height = 1.0;
   std::u16string ellipsis;
-  std::string locale;
+  std::string locale = "ja_JP";
 
   // Default strategy is kBreakStrategy_Greedy. Sometimes,
   // kBreakStrategy_HighQuality will produce more desireable layouts (eg, very
