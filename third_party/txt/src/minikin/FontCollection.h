@@ -148,6 +148,8 @@ class FontCollection {
 
   // libtxt extension: Fallback font provider.
   std::unique_ptr<FallbackFontProvider> mFallbackFontProvider;
+  
+  uint32_t mDefaultLangListId;
 };
 
 }  // namespace minikin
