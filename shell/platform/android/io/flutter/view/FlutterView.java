@@ -997,6 +997,9 @@ public class FlutterView extends SurfaceView
             this.surfaceTexture.setOnFrameAvailableListener(new SurfaceTexture.OnFrameAvailableListener() {
                 @Override
                 public void onFrameAvailable(SurfaceTexture texture) {
+                    if (mNativeView == null) {
+                        return;
+                    }
                     nativeMarkTextureFrameAvailable(mNativeView.get(), SurfaceTextureRegistryEntry.this.id);
                 }
             });
