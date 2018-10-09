@@ -977,11 +977,7 @@ public class FlutterView extends SurfaceView
                     }
                     nativeMarkTextureFrameAvailable(mNativeView.get(), SurfaceTextureRegistryEntry.this.id);
                 }
-            },
-            // The callback relies on being executed on the UI thread (unsynchronised read of mNativeView
-            // and also the engine code check for platform thread in Shell::OnPlatformViewMarkTextureFrameAvailable),
-            // so we explicitly pass a Handler for the current thread.
-            new Handler());
+            });
         }
 
         @Override
