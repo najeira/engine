@@ -218,7 +218,9 @@ class AccessibilityBridge
             // CustomLabelManager. talkback/src/main/java/labeling/CustomLabelManager.java#L525
         }
         if (object.hasAction(Action.DISMISS)) {
-            result.setDismissable(true);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                result.setDismissable(true);
+            }
             result.addAction(AccessibilityNodeInfo.ACTION_DISMISS);
         }
 
