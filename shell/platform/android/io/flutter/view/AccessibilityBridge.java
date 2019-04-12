@@ -316,7 +316,7 @@ class AccessibilityBridge
             // GridView.  Right now, we're only supporting ListViews and only if they have scroll children.
             if (object.hasFlag(Flag.HAS_IMPLICIT_SCROLLING)) {
                 if (object.hasAction(Action.SCROLL_LEFT) || object.hasAction(Action.SCROLL_RIGHT)) {
-                    if (shouldSetCollectionInfo(object)) {
+                    if (Build.VERSION.SDK_INT >= 19 && shouldSetCollectionInfo(object)) {
                         result.setCollectionInfo(AccessibilityNodeInfo.CollectionInfo.obtain(
                             0, // rows
                             object.scrollChildren, // columns
@@ -325,7 +325,7 @@ class AccessibilityBridge
                         result.setClassName("android.widget.HorizontalScrollView");
                     }
                 } else {
-                    if (shouldSetCollectionInfo(object)) {
+                    if (Build.VERSION.SDK_INT >= 19 && shouldSetCollectionInfo(object)) {
                         result.setCollectionInfo(AccessibilityNodeInfo.CollectionInfo.obtain(
                             object.scrollChildren, // rows
                             0, // columns
